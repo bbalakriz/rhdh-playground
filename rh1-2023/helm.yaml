@@ -4,22 +4,22 @@ global:
       enabled: true
       existingSecret: ''
       value: ''
-  clusterRouterBase: apps.cluster-tg6qk.sandbox2518.opentlc.com
+  clusterRouterBase: apps.cluster-h9gwq.sandbox2741.opentlc.com
   dynamic:
     includes:
       - dynamic-plugins.default.yaml
     plugins:
       - integrity: >-
-          sha512-Nae/OEY9zOFDOQ0o5MLollYGXuhP1K641CPSUNlMUy8hX/YzdI7CSuoUzmDMU9jtniZ28uV+vER1i5aj9LffHg==
-        package: bala-xkcd@0.2.0
+          sha512-v+R2v0N0bWhJ9LVXy8WcJpl7TfvvPOPZbJe1O8Ej+2+A63FUevk3q9kCi5G1NB8EmSg52hgsv1KgUg1ZR+I7fg==
+        package: '@bbalasub/rh1-devquote-plugin@0.2.3'
         pluginConfig:
           dynamicPlugins:
             frontend:
-              bala-xkcd:
+              bbalasub.rh1-devquote-plugin:
                 dynamicRoutes:
                   - importName: DevQuote
                     menuItem:
-                      text: DevQuote
+                      text: Quote
                     path: /devquote
                 mountPoints:
                   - config:
