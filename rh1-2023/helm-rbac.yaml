@@ -1,0 +1,287 @@
+global:
+  auth:
+    backend:
+      enabled: true
+  clusterRouterBase: apps.cluster-nzftb.sandbox2868.opentlc.com
+  dynamic:
+    includes:
+      - dynamic-plugins.default.yaml
+    plugins:
+      - disabled: false
+        integrity: >-
+          sha512-v+R2v0N0bWhJ9LVXy8WcJpl7TfvvPOPZbJe1O8Ej+2+A63FUevk3q9kCi5G1NB8EmSg52hgsv1KgUg1ZR+I7fg==
+        package: '@bbalasub/rh1-devquote-plugin@0.2.3'
+        pluginConfig:
+          dynamicPlugins:
+            frontend:
+              bbalasub.rh1-devquote-plugin:
+                dynamicRoutes:
+                  - importName: DevQuote
+                    menuItem:
+                      text: Quote
+                    path: /devquote
+                mountPoints:
+                  - config:
+                      layout:
+                        gridColumnEnd:
+                          lg: span 4
+                          md: span 6
+                          xs: span 12
+                    importName: DevQuote
+                    mountPoint: entity.page.overview/cards
+  permission:
+    enabled: false
+    rbac:
+      policies-csv-file: ./rbac/rbac-policy.csv
+route:
+  enabled: true
+  host: '{{ .Values.global.host }}'
+  path: /
+  tls:
+    enabled: true
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  wildcardPolicy: None
+upstream:
+  backstage:
+    appConfig:
+      app:
+        baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
+      auth:
+        environment: development
+        providers:
+          github:
+            development:
+              clientId: Iv1.790e61c4401911f5
+              clientSecret: 1166aecf3bfc02bf56bcab2420204cc4bc9ddc87
+      backend:
+        auth:
+          keys:
+            - secret: '${BACKEND_SECRET}'
+        baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
+        cors:
+          origin: 'https://{{- include "janus-idp.hostname" . }}'
+        database:
+          connection:
+            password: '${POSTGRESQL_ADMIN_PASSWORD}'
+            user: postgres
+      catalog:
+        locations:
+          - target: >-
+              https://github.com/bbalakriz/rhdh-demo-catalog/blob/master/catalog-entities/all.yaml
+            type: url
+        providers:
+          github:
+            providerId:
+              organization: bbalakriz
+            schedule:
+              frequency:
+                minutes: 30
+              initialDelay:
+                seconds: 15
+              timeout:
+                minutes: 3
+          githubOrg:
+            default:
+              id: production
+              orgUrl: 'https://github.com/bbalakriz'
+      integrations:
+        github:
+          - apps:
+              - appId: 700287
+                clientId: Iv1.790e61c4401911f5
+                clientSecret: 1166aecf3bfc02bf56bcab2420204cc4bc9ddc87
+                privateKey: >
+                  -----BEGIN RSA PRIVATE KEY-----
+                  MIIEowIBAAKCAQEA2knlidYaaFQNRXIaIzCOt0tiEchOhiAiZ6YF7FojLrylNjZp
+                  iGYK2OWRMoelgYauvZF/IydUhXGmFsOxTMnjCOUAyn4N0Ch6eR3pZ34OA/yw4ZDK
+                  JBCTjhRKau8iPtjKa0Ggvm1BLRo2iYE5sD7CgSKvx0Yd/Xi7Krtp+k9O+yI/He1X
+                  kfyrIU0L+UNP5hDO763w/ZQDaQ1Po+RGUfyBK49i/qmoWK9wDmwxv8tt+6vIwayR
+                  5dMgWdR9bIAvqWbqreAIYUDJryAYTLnPtthMUErOXKri9l3Vx3Bz3eLppRRE/GVZ
+                  NvBmrNs/BsDjyCu9LZWAsxLK2154Of3cXALxBQIDAQABAoIBAQCNT61S79GknFUD
+                  Efytry+UpS5ViLCcz4y2QJoxCaEhDmp9j/f9nuGCzAqVBY81LLVObzQ406s5v/rf
+                  XcwXg9J/3ZAHhlb23F18rsp8fvQfzKPNQmg5tKlxHt2WIDyxJrLTgGbJH/1Db2bC
+                  2W85E0fjRUs528BqaI/x9+WBb3oXxD9F1mMOHmwMWcwhHgvC/fSx8usP4EQBqRoz
+                  3/nJTZpE89nGM3o9zoAnyYYOegA7vWhv61vtie8n/ztd1MGHoUB5eZpHhnfWGw3R
+                  lU9UGJbC3pw+TkejytiTaG2iqYR0i6/5ugW+AjJASmYLeskj3TGttzJiE/mMjRWE
+                  yvWEj0u5AoGBAPmm5EXdFu9iho+dTHYfmFxkY9xQTtdorWdltp53k6xwctCtJ3uv
+                  Pfktm4Vc46//AMFLXwm9xOa/HMQAkGp97ubpay29y/TomM0MgzujpauNKiiMnOQp
+                  cQhAkOQVDZuk2k73RYAkgVwAn+uSkyUkHCF4i2XY/Dj+XJoqL8bU8JDfAoGBAN/W
+                  2IzViFmBpsex1u/5aVontLt3AQ91/tUb7Zacu7eSMzsjabjM95bSFPrH0W+hbG5V
+                  nJc5XKzkHQP1rkruEuVNnyd1AHmDZoeTRVs2vR2xtHynsiVC0KhqfsT5VwSEnL9C
+                  NobsqTt8NX6+I441MIheX5UbGMGgJOml2C7lygabAoGANnwc775rxfzrvyYmTNVi
+                  bC+gt7FzM4Ht7lX9gCI6wXSdKjvQFSdO0DYK7hUyv/NYV9c6O6cF9RIalhBFdGhd
+                  nlmtAYOdoqqsxnuHnJl/i6w4Wjct+oGs4I8u0AhkOubEml1O9sOA0/Jy9He902pJ
+                  FWj4i1bK3SluTlsMqElK42MCgYB797knBnvlVnDP2CZ58V/vll36FQZ5UZg43qbO
+                  6y7rlATbk9lRh/L3jJIh8diEQpqS4MdA2XwCJLQNJVvKE+BTLpIegCYrJiL6ow2e
+                  XsqOT4TuJNH84Ow+2fwriwwubGODaWBZiWiQkVHvR87ZS4v9eoblRYSId/D5legM
+                  0Sb6UQKBgFmgp3Gis4BN7Ifus5KruGYNI3M6Sk9c013zK9/vLHDMAIhyf6pEdI4Z
+                  b0oBxWgtm/sVMSVUmPidE6PimrvS7iodCrXWt+SbZU1CM8dIWLjU0tp/yDA0m7LP
+                  ZafIiQNFiwcrELGXq/cYvnkwnWRH8zY9AScV425kT9REOAiVhDmW
+                  -----END RSA PRIVATE KEY-----
+                webhookSecret: Start@123
+                webhookUrl: >-
+                  https://developer-hub-rhdh.apps.cluster-5hhvm.sandbox1489.opentlc.com/
+            host: github.com
+      permission:
+        enabled: true
+        rbac:
+          policies-csv-file: ./rbac/rbac-policy.csv
+    args:
+      - '--config'
+      - dynamic-plugins-root/app-config.dynamic-plugins.yaml
+    containerPorts:
+      backend: 7007
+    extraEnvVars:
+      - name: BACKEND_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: backend-secret
+            name: '{{ include "janus-idp.backend-secret-name" $ }}'
+      - name: POSTGRESQL_ADMIN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: postgres-password
+            name: '{{- include "janus-idp.postgresql.secretName" . }}'
+    extraVolumeMounts:
+      - mountPath: /opt/app-root/src/dynamic-plugins-root
+        name: dynamic-plugins-root
+      - mountPath: opt/app-root/src/rbac
+        name: rbac-policy
+    extraVolumes:
+      - ephemeral:
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 1Gi
+        name: dynamic-plugins-root
+      - configMap:
+          defaultMode: 420
+          name: dynamic-plugins
+          optional: true
+        name: dynamic-plugins
+      - name: dynamic-plugins-npmrc
+        secret:
+          defaultMode: 420
+          optional: true
+          secretName: dynamic-plugins-npmrc
+      - configMap:
+          defaultMode: 420
+          name: rbac-policy
+        name: rbac-policy
+    image:
+      debug: false
+      pullPolicy: Always
+      registry: registry.redhat.io
+      repository: rhdh/rhdh-hub-rhel9
+      tag: 1.0-200
+    initContainers:
+      - command:
+          - ./install-dynamic-plugins.sh
+          - /dynamic-plugins-root
+        env:
+          - name: NPM_CONFIG_USERCONFIG
+            value: /opt/app-root/src/.npmrc.dynamic-plugins
+        image: '{{ include "backstage.image" . }}'
+        imagePullPolicy: Always
+        name: install-dynamic-plugins
+        volumeMounts:
+          - mountPath: /dynamic-plugins-root
+            name: dynamic-plugins-root
+          - mountPath: /opt/app-root/src/dynamic-plugins.yaml
+            name: dynamic-plugins
+            readOnly: true
+            subPath: dynamic-plugins.yaml
+          - mountPath: /opt/app-root/src/.npmrc.dynamic-plugins
+            name: dynamic-plugins-npmrc
+            readOnly: true
+            subPath: .npmrc
+        workingDir: /opt/app-root/src
+    installDir: /opt/app-root/src
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 7007
+        scheme: HTTP
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 2
+    podAnnotations:
+      checksum/dynamic-plugins: >-
+        {{- include "common.tplvalues.render" ( dict "value"
+        .Values.global.dynamic "context" $) | sha256sum }}
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 7007
+        scheme: HTTP
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 2
+      timeoutSeconds: 2
+    replicas: 1
+    revisionHistoryLimit: 10
+  clusterDomain: cluster.local
+  diagnosticMode:
+    args:
+      - infinity
+    command:
+      - sleep
+    enabled: false
+  ingress:
+    enabled: false
+    host: '{{ .Values.global.host }}'
+    tls:
+      enabled: false
+  metrics:
+    serviceMonitor:
+      enabled: false
+      path: /metrics
+  nameOverride: developer-hub
+  networkPolicy:
+    egressRules:
+      denyConnectionsToExternal: false
+    enabled: false
+  postgresql:
+    auth:
+      secretKeys:
+        adminPasswordKey: postgres-password
+        userPasswordKey: password
+    enabled: true
+    image:
+      registry: registry.redhat.io
+      repository: rhel9/postgresql-15
+      tag: latest
+    postgresqlDataDir: /var/lib/pgsql/data/userdata
+    primary:
+      containerSecurityContext:
+        enabled: false
+      extraEnvVars:
+        - name: POSTGRESQL_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: postgres-password
+              name: '{{- include "postgresql.v1.secretName" . }}'
+      persistence:
+        enabled: true
+        mountPath: /var/lib/pgsql/data
+        size: 1Gi
+      podSecurityContext:
+        enabled: false
+  service:
+    externalTrafficPolicy: Cluster
+    ports:
+      backend: 7007
+      name: http-backend
+      targetPort: backend
+    sessionAffinity: None
+    type: ClusterIP
+  serviceAccount:
+    automountServiceAccountToken: true
+    create: false
