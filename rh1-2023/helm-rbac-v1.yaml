@@ -88,33 +88,7 @@ upstream:
                 clientId: Iv1.790e61c4401911f5
                 clientSecret: 1166aecf3bfc02bf56bcab2420204cc4bc9ddc87
                 privateKey: >
-                  -----BEGIN RSA PRIVATE KEY-----
-                  MIIEowIBAAKCAQEA2knlidYaaFQNRXIaIzCOt0tiEchOhiAiZ6YF7FojLrylNjZp
-                  iGYK2OWRMoelgYauvZF/IydUhXGmFsOxTMnjCOUAyn4N0Ch6eR3pZ34OA/yw4ZDK
-                  JBCTjhRKau8iPtjKa0Ggvm1BLRo2iYE5sD7CgSKvx0Yd/Xi7Krtp+k9O+yI/He1X
-                  kfyrIU0L+UNP5hDO763w/ZQDaQ1Po+RGUfyBK49i/qmoWK9wDmwxv8tt+6vIwayR
-                  5dMgWdR9bIAvqWbqreAIYUDJryAYTLnPtthMUErOXKri9l3Vx3Bz3eLppRRE/GVZ
-                  NvBmrNs/BsDjyCu9LZWAsxLK2154Of3cXALxBQIDAQABAoIBAQCNT61S79GknFUD
-                  Efytry+UpS5ViLCcz4y2QJoxCaEhDmp9j/f9nuGCzAqVBY81LLVObzQ406s5v/rf
-                  XcwXg9J/3ZAHhlb23F18rsp8fvQfzKPNQmg5tKlxHt2WIDyxJrLTgGbJH/1Db2bC
-                  2W85E0fjRUs528BqaI/x9+WBb3oXxD9F1mMOHmwMWcwhHgvC/fSx8usP4EQBqRoz
-                  3/nJTZpE89nGM3o9zoAnyYYOegA7vWhv61vtie8n/ztd1MGHoUB5eZpHhnfWGw3R
-                  lU9UGJbC3pw+TkejytiTaG2iqYR0i6/5ugW+AjJASmYLeskj3TGttzJiE/mMjRWE
-                  yvWEj0u5AoGBAPmm5EXdFu9iho+dTHYfmFxkY9xQTtdorWdltp53k6xwctCtJ3uv
-                  Pfktm4Vc46//AMFLXwm9xOa/HMQAkGp97ubpay29y/TomM0MgzujpauNKiiMnOQp
-                  cQhAkOQVDZuk2k73RYAkgVwAn+uSkyUkHCF4i2XY/Dj+XJoqL8bU8JDfAoGBAN/W
-                  2IzViFmBpsex1u/5aVontLt3AQ91/tUb7Zacu7eSMzsjabjM95bSFPrH0W+hbG5V
-                  nJc5XKzkHQP1rkruEuVNnyd1AHmDZoeTRVs2vR2xtHynsiVC0KhqfsT5VwSEnL9C
-                  NobsqTt8NX6+I441MIheX5UbGMGgJOml2C7lygabAoGANnwc775rxfzrvyYmTNVi
-                  bC+gt7FzM4Ht7lX9gCI6wXSdKjvQFSdO0DYK7hUyv/NYV9c6O6cF9RIalhBFdGhd
-                  nlmtAYOdoqqsxnuHnJl/i6w4Wjct+oGs4I8u0AhkOubEml1O9sOA0/Jy9He902pJ
-                  FWj4i1bK3SluTlsMqElK42MCgYB797knBnvlVnDP2CZ58V/vll36FQZ5UZg43qbO
-                  6y7rlATbk9lRh/L3jJIh8diEQpqS4MdA2XwCJLQNJVvKE+BTLpIegCYrJiL6ow2e
-                  XsqOT4TuJNH84Ow+2fwriwwubGODaWBZiWiQkVHvR87ZS4v9eoblRYSId/D5legM
-                  0Sb6UQKBgFmgp3Gis4BN7Ifus5KruGYNI3M6Sk9c013zK9/vLHDMAIhyf6pEdI4Z
-                  b0oBxWgtm/sVMSVUmPidE6PimrvS7iodCrXWt+SbZU1CM8dIWLjU0tp/yDA0m7LP
-                  ZafIiQNFiwcrELGXq/cYvnkwnWRH8zY9AScV425kT9REOAiVhDmW -----END
-                  RSA PRIVATE KEY-----
+                  <CHANGE_ME>
                 webhookSecret: Start@123
                 webhookUrl: >-
                   https://developer-hub-rhdh.apps.cluster-5hhvm.sandbox1489.opentlc.com/
