@@ -85,18 +85,20 @@ upstream:
         github:
           - apps:
               - appId: 700287
-                clientId: Iv1.790e61c4401911f5
-                clientSecret: 1166aecf3bfc02bf56bcab2420204cc4bc9ddc87
+                clientId: <CHANGE_IT> # replace it GH app client id
+                clientSecret: <CHANGE_IT> #replace it GH app client secret
                 privateKey: >
-                  <CHANGE_ME>
-                webhookSecret: Start@123
+                  <CHANGE_IT> #replace it GH app private key
+                webhookSecret: <CHANGE_IT> #replace it GH app web hook secret
                 webhookUrl: >-
                   https://developer-hub-rhdh.apps.cluster-5hhvm.sandbox1489.opentlc.com/
             host: github.com
       permission:
         enabled: true
         rbac:
-          policies-csv-file: ./rbac/rbac-policy.csv
+          admin:
+            users:
+              - name: 'user:default/bbalakriz'
     args:
       - '--config'
       - dynamic-plugins-root/app-config.dynamic-plugins.yaml
@@ -116,8 +118,6 @@ upstream:
     extraVolumeMounts:
       - mountPath: /opt/app-root/src/dynamic-plugins-root
         name: dynamic-plugins-root
-      - mountPath: opt/app-root/src/rbac
-        name: rbac-policy
     extraVolumes:
       - ephemeral:
           volumeClaimTemplate:
@@ -138,10 +138,6 @@ upstream:
           defaultMode: 420
           optional: true
           secretName: dynamic-plugins-npmrc
-      - configMap:
-          defaultMode: 420
-          name: rbac-policy
-        name: rbac-policy
     image:
       debug: false
       pullPolicy: Always
