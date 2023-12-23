@@ -29,10 +29,6 @@ global:
                           xs: span 12
                     importName: DevQuote
                     mountPoint: entity.page.overview/cards
-  permission:
-    enabled: false
-    rbac:
-      policies-csv-file: ./rbac/rbac-policy.csv
 route:
   enabled: true
   host: '{{ .Values.global.host }}'
