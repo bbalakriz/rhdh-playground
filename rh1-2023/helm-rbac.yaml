@@ -2,7 +2,7 @@ global:
   auth:
     backend:
       enabled: true
-  clusterRouterBase: apps.cluster-nzftb.sandbox2868.opentlc.com
+  clusterRouterBase: #replace it OCP cluster base URL 
   dynamic:
     includes:
       - dynamic-plugins.default.yaml
