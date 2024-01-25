@@ -20,8 +20,7 @@ services:
     command: --config /opt/app-root/src/app-config.yaml
     volumes:
       - ./app-config.yaml:/opt/app-root/src/app-config.yaml
-      - ./dynamic-plugins.yaml:/opt/app-root/src/dynamic-plugins.yaml
-      # - ./dynamic-plugins-root:/opt/app-root/src/dynamic-plugins-root
+      - ./dynamic-plugins-root:/opt/app-root/src/dynamic-plugins-root
     ports:
       - "127.0.0.1:7007:7007"
       - "127.0.0.1:3000:3000"

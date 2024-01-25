@@ -1,12 +1,24 @@
 app:
-  baseUrl: http://localhost:3000
+  baseUrl: https://glorious-fishstick-q965vvj6jg934j9w-7007.app.github.dev/
 backend:
   auth:
     keys:
-    - secret: nothingissecret
-  baseUrl: http://localhost:7007
+    - secret: FSzgMhrle7mDK68wTLHD5fVc
+  baseUrl: https://glorious-fishstick-q965vvj6jg934j9w-7007.app.github.dev/
+  listen:
+    port: 7007
+  csp:
+    connect-src:
+      - "'self'"
+      - 'http:'
+      - 'https:'
+    img-src:
+      - "'self'"
+      - 'data:'
   cors:
-    origin: http://localhost:3000
+    origin: https://glorious-fishstick-q965vvj6jg934j9w-7007.app.github.dev/
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true  
   database:
     connection:
       password: rhdh
