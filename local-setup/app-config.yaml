@@ -1,0 +1,16 @@
+app:
+  baseUrl: http://localhost:3000
+backend:
+  auth:
+    keys:
+    - secret: nothingissecret
+  baseUrl: http://localhost:7007
+  cors:
+    origin: http://localhost:3000
+  database:
+    connection:
+      password: rhdh
+      user: rhdhadmin
+      host: postgres
+dynamicPlugins:
+  rootDirectory: dynamic-plugins-root

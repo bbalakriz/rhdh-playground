@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  postgres:
+    hostname: postgres
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=rhdh
+      - POSTGRES_USER=rhdhadmin
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5      
+
+  rhdh:
+    image: registry.redhat.io/rhdh/rhdh-hub-rhel9:1.0-200
+    command: --config /opt/app-root/src/app-config.yaml
+    volumes:
+      - ./app-config.yaml:/opt/app-root/src/app-config.yaml
+      - ./dynamic-plugins.yaml:/opt/app-root/src/dynamic-plugins.yaml
+      # - ./dynamic-plugins-root:/opt/app-root/src/dynamic-plugins-root
+    ports:
+      - "127.0.0.1:7007:7007"
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+ 
